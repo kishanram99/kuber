@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: phpmyadmin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: phpmyadmin
+  template:    
+    metadata:
+      labels:
+        name: phpmyadmin
+    spec:
+      containers:
+       - name: phpmyadmin
+         image: phpmyadmin
+         env:
+          - name: PMA_HOST
+            value: database-service
+         #       - name: PMA_PORT
+         #         value: 3306
